@@ -36,6 +36,8 @@ const mobileMenu = document.getElementById('mobileMenu');
 hamburger.addEventListener('click', () => {
     mobileMenu.classList.toggle('active');
     hamburger.classList.toggle('active');
+    // Prevent body scroll when menu is open
+    document.body.style.overflow = mobileMenu.classList.contains('active') ? 'hidden' : '';
 });
 
 // Close mobile menu on link click
