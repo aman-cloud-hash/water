@@ -533,7 +533,7 @@ nav.scrolled .hamburger span {
     box-shadow: 0 5px 20px rgba(0, 119, 182, 0.1);
     overflow: hidden;
     transition: var(--transition);
-    text-align: left;
+    text-align: center;
 }
 
 .product-card:hover {
@@ -1214,6 +1214,12 @@ footer {
     .two-col {
         grid-template-columns: 1fr;
         gap: 40px;
+        text-align: center;
+    }
+    .two-col div {
+        display: flex;
+        flex-direction: column;
+        align-items: center;
     }
     .stat-card::after {
         display: none;
