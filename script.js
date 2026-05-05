@@ -72,7 +72,7 @@ function updateCartUI() {
     if (cartCount) cartCount.innerText = totalQty;
     
     // Update drawer body
-    const cartBody = document.querySelector('.cart-body');
+    const cartBody = document.getElementById('cartItemsList');
     if (!cartBody) return;
     
     if (cart.length === 0) {
@@ -85,18 +85,19 @@ function updateCartUI() {
         document.querySelector('.cart-total span:last-child').innerText = '₹0.00';
     } else {
         cartBody.innerHTML = cart.map((item, index) => `
-            <div class="cart-item" style="display:flex; gap:15px; margin-bottom:20px; align-items:center; border-bottom:1px solid #eee; padding-bottom:15px;">
-                <img src="${item.img}" style="width:60px; height:60px; object-fit:contain; background:#f9f9f9; border-radius:8px;">
-                <div style="flex:1;">
-                    <h4 style="font-size:0.95rem; margin-bottom:5px;">${item.name}</h4>
-                    <p style="font-size:0.85rem; color:#666;">₹${item.price} x ${item.qty}</p>
+            <div class="cart-item">
+                <img src="${item.img}" alt="${item.name}">
+                <div class="cart-item-info">
+                    <h4>${item.name}</h4>
+                    <p>₹${item.price} x ${item.qty}</p>
+                    <span class="cart-item-remove" onclick="removeFromCart(${index})">Remove Item</span>
                 </div>
-                <button onclick="removeFromCart(${index})" style="background:none; border:none; color:#ff4d4d; cursor:pointer; font-size:0.8rem;">Remove</button>
             </div>
         `).join('');
         
         const total = cart.reduce((sum, item) => sum + (item.price * item.qty), 0);
-        document.querySelector('.cart-total span:last-child').innerText = `₹${total.toFixed(2)}`;
+        const totalDisplay = document.getElementById('cartTotalAmount');
+        if (totalDisplay) totalDisplay.innerText = `₹${total.toFixed(2)}`;
     }
     
     localStorage.setItem('aqtive_cart', JSON.stringify(cart));
