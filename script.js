@@ -131,20 +131,35 @@ function initCounters() {
     const stats = document.querySelectorAll('.stat-number');
     stats.forEach(stat => {
         const target = parseInt(stat.dataset.target);
-        const countUp = new countUp.CountUp(stat, target, {
-            duration: 3,
-            useEasing: true,
-            useGrouping: true,
-            suffix: '+'
-        });
+        // Robust initialization
+        let counterInstance;
+        if (typeof countUp !== 'undefined' && countUp.CountUp) {
+            counterInstance = new countUp.CountUp(stat, target, {
+                duration: 2.5,
+                useEasing: true,
+                useGrouping: true,
+                suffix: '+'
+            });
+        } else if (typeof CountUp !== 'undefined') {
+            counterInstance = new CountUp(stat, target, {
+                duration: 2.5,
+                useEasing: true,
+                useGrouping: true,
+                suffix: '+'
+            });
+        }
         
         // Start when in view
         const observer = new IntersectionObserver((entries) => {
             if (entries[0].isIntersecting) {
-                countUp.start();
+                if (counterInstance) {
+                    counterInstance.start();
+                } else {
+                    stat.innerText = target + '+';
+                }
                 observer.disconnect();
             }
-        }, { threshold: 0.5 });
+        }, { threshold: 0.1 });
         
         observer.observe(stat);
     });
@@ -172,10 +187,5 @@ function initCarouselLoop() {
 document.addEventListener('DOMContentLoaded', () => {
     updateCartUI();
     initCarouselLoop();
-    if (typeof countUp !== 'undefined') {
-        initCounters();
-    } else {
-        // Fallback if library fails to load
-        document.querySelectorAll('.stat-number').forEach(s => s.innerText = s.dataset.target + '+');
-    }
+    initCounters();
 });
