@@ -221,7 +221,7 @@ nav.scrolled .hamburger span {
     flex-direction: column;
     gap: 6px;
     cursor: pointer;
-    z-index: 1001;
+    z-index: 1100;
 }
 
 .hamburger span {
@@ -230,6 +230,18 @@ nav.scrolled .hamburger span {
     background: var(--blue-dark);
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 10px;
+}
+
+.hamburger.active span:nth-child(1) {
+    transform: rotate(45deg) translate(6px, 6px);
+}
+
+.hamburger.active span:nth-child(2) {
+    opacity: 0;
+}
+
+.hamburger.active span:nth-child(3) {
+    transform: rotate(-45deg) translate(6px, -7px);
 }
 
 .mobile-menu {
@@ -797,6 +809,26 @@ nav.scrolled .hamburger span {
     box-shadow: 0 20px 60px rgba(0, 52, 128, 0.15);
 }
 
+/* Brand Story Section */
+.brand-story {
+    background: white;
+}
+
+.brand-story-img img {
+    width: 100%;
+    border-radius: 20px;
+    box-shadow: 0 30px 80px rgba(0,119,182,0.2);
+}
+
+/* Sustainability & Blog Sections */
+.sustainability {
+    background: #f8fbff !important;
+}
+
+.blog {
+    background: #f0f8ff !important;
+}
+
 /* Stats Section */
 .stats {
     background: linear-gradient(135deg, #001f4d, #003480, #005baa);
@@ -933,10 +965,9 @@ nav.scrolled .hamburger span {
 
 /* Gallery Section Upgrade */
 .carousel-wrapper {
-    display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
-    padding: 0 40px;
+    position: relative;
+    overflow: hidden;
+    padding: 40px 0;
 }
 
 .video-card {
@@ -1133,12 +1164,28 @@ footer {
 
 /* Mobile Optimization */
 @media (max-width: 992px) {
+    nav {
+        padding: 0 5%;
+    }
+    .nav-links, .btn-phone {
+        display: none;
+    }
+    .hamburger {
+        display: flex;
+    }
     .footer-grid {
         grid-template-columns: 1fr 1fr;
     }
     .contact .two-col {
         grid-template-columns: 1fr;
         gap: 50px;
+    }
+    .two-col {
+        grid-template-columns: 1fr;
+        gap: 40px;
+    }
+    .stat-card::after {
+        display: none;
     }
 }
 
@@ -1152,6 +1199,7 @@ footer {
     .hero-btns {
         flex-direction: column;
         width: 100%;
+        gap: 15px;
     }
     .hero-btns .btn-primary, .hero-btns .btn-outline {
         width: 100%;
@@ -1163,13 +1211,28 @@ footer {
         grid-template-columns: 1fr;
     }
     .stats-grid {
-        grid-template-columns: 2fr 2fr;
+        grid-template-columns: 1fr 1fr;
+    }
+    h2 {
+        font-size: 1.8rem;
+    }
+    .section-header {
+        margin-bottom: 40px;
     }
 }
 
 @media (max-width: 480px) {
     .stats-grid {
         grid-template-columns: 1fr;
+    }
+    .logo {
+        font-size: 20px;
+    }
+    .nav-right {
+        gap: 10px;
+    }
+    .stat-number {
+        font-size: 2.5rem;
     }
 }
 
