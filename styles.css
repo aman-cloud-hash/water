@@ -1208,6 +1208,14 @@ footer {
     .hamburger {
         display: flex;
         padding: 10px;
+        z-index: 10001;
+        flex-shrink: 0;
+    }
+    .hamburger span {
+        background: #0077B6 !important;
+        width: 25px;
+        height: 3px;
+        display: block;
     }
     .footer-grid {
         grid-template-columns: 1fr 1fr;
