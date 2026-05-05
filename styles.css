@@ -226,15 +226,18 @@ nav.scrolled .hamburger span {
 .hamburger {
     display: none;
     flex-direction: column;
-    gap: 6px;
+    gap: 5px;
     cursor: pointer;
     z-index: 1100;
+    padding: 10px;
+    background: transparent;
+    border-radius: 8px;
 }
 
 .hamburger span {
-    width: 28px;
+    width: 30px;
     height: 3px;
-    background: var(--blue-dark);
+    background: #1a202c;
     transition: all 0.4s cubic-bezier(0.4, 0, 0.2, 1);
     border-radius: 10px;
 }
