@@ -19,12 +19,17 @@ html {
     scroll-behavior: smooth;
 }
 
+html, body {
+    overflow-x: hidden;
+    width: 100%;
+    position: relative;
+}
+
 body {
     font-family: 'Inter', sans-serif;
     color: var(--text-gray);
     background-color: var(--white);
     line-height: 1.8;
-    overflow-x: hidden;
     font-size: 1rem;
 }
 
@@ -1175,16 +1180,18 @@ footer {
 /* Mobile Optimization */
 @media (max-width: 992px) {
     nav {
-        padding: 0 20px;
+        padding: 0 15px;
         height: 70px;
         background: #ffffff !important;
         box-shadow: 0 2px 15px rgba(0,0,0,0.1);
         z-index: 9999;
-        width: 100% !important;
+        width: 100vw !important;
         left: 0 !important;
+        right: 0 !important;
         display: flex !important;
-        visibility: visible !important;
-        opacity: 1 !important;
+        align-items: center;
+        justify-content: space-between;
+        margin: 0 !important;
     }
     nav .logo, nav .hamburger span {
         filter: none;
@@ -1201,21 +1208,15 @@ footer {
     }
     .nav-right {
         margin-left: auto;
-        margin-right: 15px;
+        margin-right: 5px;
         display: flex;
         align-items: center;
+        gap: 10px;
     }
     .hamburger {
         display: flex;
-        padding: 10px;
-        z-index: 10001;
-        flex-shrink: 0;
-    }
-    .hamburger span {
-        background: #0077B6 !important;
-        width: 25px;
-        height: 3px;
-        display: block;
+        padding: 5px;
+        margin-right: -5px;
     }
     .footer-grid {
         grid-template-columns: 1fr 1fr;
